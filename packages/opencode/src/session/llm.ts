@@ -215,7 +215,7 @@ export namespace LLM {
             }
           : input.model.providerID !== "anthropic"
             ? {
-                "User-Agent": `opencode/${Installation.VERSION}`,
+                "User-Agent": `waspcode/${Installation.VERSION}`,
               }
             : undefined),
         ...input.model.headers,

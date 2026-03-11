@@ -420,7 +420,7 @@ export const ProvidersLoginCommand = cmd({
         }
 
         if (provider === "opencode") {
-          prompts.log.info("Create an api key at https://opencode.ai/auth")
+          prompts.log.info("Create an api key at https://waspco.de/auth")
         }
 
         if (provider === "vercel") {

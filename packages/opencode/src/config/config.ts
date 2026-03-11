@@ -47,11 +47,11 @@ export namespace Config {
   function systemManagedConfigDir(): string {
     switch (process.platform) {
       case "darwin":
-        return "/Library/Application Support/opencode"
+        return "/Library/Application Support/waspcode"
       case "win32":
-        return path.join(process.env.ProgramData || "C:\\ProgramData", "opencode")
+        return path.join(process.env.ProgramData || "C:\\ProgramData", "waspcode")
       default:
-        return "/etc/opencode"
+        return "/etc/waspcode"
     }
   }
 
@@ -76,12 +76,12 @@ export namespace Config {
   export const state = Instance.state(async () => {
     const auth = await Auth.all()
 
-    // Config loading order (low -> high precedence): https://opencode.ai/docs/config#precedence-order
-    // 1) Remote .well-known/opencode (org defaults)
-    // 2) Global config (~/.config/opencode/opencode.json{,c})
+    // Config loading order (low -> high precedence): https://waspco.de/docs/config#precedence-order
+    // 1) Remote .well-known/waspcode (org defaults)
+    // 2) Global config (~/.config/waspcode/waspcode.json{,c})
     // 3) Custom config (OPENCODE_CONFIG)
-    // 4) Project config (opencode.json{,c})
-    // 5) .opencode directories (.opencode/agents/, .opencode/commands/, .opencode/plugins/, .opencode/opencode.json{,c})
+    // 4) Project config (waspcode.json{,c})
+    // 5) .waspcode directories (.waspcode/agents/, .waspcode/commands/, .waspcode/plugins/, .waspcode/waspcode.json{,c})
     // 6) Inline config (OPENCODE_CONFIG_CONTENT)
     // Managed config directory is enterprise-only and always overrides everything above.
     let result: Info = {}
@@ -89,20 +89,20 @@ export namespace Config {
       if (value.type === "wellknown") {
         const url = key.replace(/\/+$/, "")
         process.env[value.key] = value.token
-        log.debug("fetching remote config", { url: `${url}/.well-known/opencode` })
-        const response = await fetch(`${url}/.well-known/opencode`)
+        log.debug("fetching remote config", { url: `${url}/.well-known/waspcode` })
+        const response = await fetch(`${url}/.well-known/waspcode`)
         if (!response.ok) {
           throw new Error(`failed to fetch remote config from ${url}: ${response.status}`)
         }
         const wellknown = (await response.json()) as any
         const remoteConfig = wellknown.config ?? {}
         // Add $schema to prevent load() from trying to write back to a non-existent file
-        if (!remoteConfig.$schema) remoteConfig.$schema = "https://opencode.ai/config.json"
+        if (!remoteConfig.$schema) remoteConfig.$schema = "https://waspco.de/config.json"
         result = mergeConfigConcatArrays(
           result,
           await load(JSON.stringify(remoteConfig), {
-            dir: path.dirname(`${url}/.well-known/opencode`),
-            source: `${url}/.well-known/opencode`,
+            dir: path.dirname(`${url}/.well-known/waspcode`),
+            source: `${url}/.well-known/waspcode`,
           }),
         )
         log.debug("loaded remote config from well-known", { url })
@@ -131,7 +131,7 @@ export namespace Config {
 
     const directories = await ConfigPaths.directories(Instance.directory, Instance.worktree)
 
-    // .opencode directory config overrides (project and global) config sources.
+    // .waspcode directory config overrides (project and global) config sources.
     if (Flag.OPENCODE_CONFIG_DIR) {
       log.debug("loading config from OPENCODE_CONFIG_DIR", { path: Flag.OPENCODE_CONFIG_DIR })
     }
@@ -939,7 +939,7 @@ export namespace Config {
       port: z.number().int().positive().optional().describe("Port to listen on"),
       hostname: z.string().optional().describe("Hostname to listen on"),
       mdns: z.boolean().optional().describe("Enable mDNS service discovery"),
-      mdnsDomain: z.string().optional().describe("Custom domain name for mDNS service (default: opencode.local)"),
+      mdnsDomain: z.string().optional().describe("Custom domain name for mDNS service (default: waspcode.local)"),
       cors: z.array(z.string()).optional().describe("Additional domains to allow for CORS"),
     })
     .strict()
@@ -1021,7 +1021,7 @@ export namespace Config {
       command: z
         .record(z.string(), Command)
         .optional()
-        .describe("Command configuration, see https://opencode.ai/docs/commands"),
+        .describe("Command configuration, see https://waspco.de/docs/commands"),
       skills: Skills.optional().describe("Additional skill folder paths"),
       watcher: z
         .object({
@@ -1088,7 +1088,7 @@ export namespace Config {
         })
         .catchall(Agent)
         .optional()
-        .describe("Agent configuration, see https://opencode.ai/docs/agents"),
+        .describe("Agent configuration, see https://waspco.de/docs/agents"),
       provider: z
         .record(z.string(), Provider)
         .optional()
@@ -1225,7 +1225,7 @@ export namespace Config {
         .then(async (mod) => {
           const { provider, model, ...rest } = mod.default
           if (provider && model) result.model = `${provider}/${model}`
-          result["$schema"] = "https://opencode.ai/config.json"
+          result["$schema"] = "https://waspco.de/config.json"
           result = mergeDeep(result, rest)
           await Filesystem.writeJson(path.join(Global.Path.config, "config.json"), result)
           await fs.unlink(legacy)
@@ -1269,8 +1269,8 @@ export namespace Config {
     const parsed = Info.safeParse(normalized)
     if (parsed.success) {
       if (!parsed.data.$schema && isFile) {
-        parsed.data.$schema = "https://opencode.ai/config.json"
-        const updated = original.replace(/^\s*\{/, '{\n  "$schema": "https://opencode.ai/config.json",')
+        parsed.data.$schema = "https://waspco.de/config.json"
+        const updated = original.replace(/^\s*\{/, '{\n  "$schema": "https://waspco.de/config.json",')
         await Filesystem.write(options.path, updated).catch(() => {})
       }
       const data = parsed.data

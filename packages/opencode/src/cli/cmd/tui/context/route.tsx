@@ -2,6 +2,14 @@ import { createStore } from "solid-js/store"
 import { createSimpleContext } from "./helper"
 import type { PromptInfo } from "../component/prompt/history"
 
+export type WelcomeRoute = {
+  type: "welcome"
+}
+
+export type PlanRoute = {
+  type: "plan"
+}
+
 export type HomeRoute = {
   type: "home"
   initialPrompt?: PromptInfo
@@ -14,7 +22,7 @@ export type SessionRoute = {
   initialPrompt?: PromptInfo
 }
 
-export type Route = HomeRoute | SessionRoute
+export type Route = WelcomeRoute | PlanRoute | HomeRoute | SessionRoute
 
 export const { use: useRoute, provider: RouteProvider } = createSimpleContext({
   name: "Route",
@@ -23,7 +31,7 @@ export const { use: useRoute, provider: RouteProvider } = createSimpleContext({
       process.env["OPENCODE_ROUTE"]
         ? JSON.parse(process.env["OPENCODE_ROUTE"])
         : {
-            type: "home",
+            type: "welcome",
           },
     )
 

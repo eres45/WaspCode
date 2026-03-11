@@ -14,6 +14,7 @@ import { Process } from "../util/process"
 import { git } from "../util/git"
 import { BusEvent } from "@/bus/bus-event"
 import { GlobalBus } from "@/bus/global"
+import { Glob } from "../util/glob"
 
 export namespace Worktree {
   const log = Log.create({ service: "worktree" })
@@ -188,6 +189,8 @@ export namespace Worktree {
     "wolf",
   ] as const
 
+  const WASPCODE_SKILL_PATTERN = "{skill,skills}/**/SKILL.md"
+
   function pick<const T extends readonly string[]>(list: T) {
     return list[Math.floor(Math.random() * list.length)]
   }
@@ -240,7 +243,8 @@ export namespace Worktree {
     const base = await canonical(root)
     await Promise.all(
       entries.map(async (entry) => {
-        const target = await canonical(path.resolve(root, entry))
+        const matches = await Glob.scan(WASPCODE_SKILL_PATTERN, { cwd: entry })
+        const target = matches[0]
         if (target === base) return
         if (!target.startsWith(`${base}${path.sep}`)) return
         await fs.rm(target, { recursive: true, force: true }).catch(() => undefined)
@@ -269,7 +273,7 @@ export namespace Worktree {
   async function candidate(root: string, base?: string) {
     for (const attempt of Array.from({ length: 26 }, (_, i) => i)) {
       const name = base ? (attempt === 0 ? base : `${base}-${randomName()}`) : randomName()
-      const branch = `opencode/${name}`
+      const branch = `waspcode/${name}`
       const directory = path.join(root, name)
 
       if (await exists(directory)) continue

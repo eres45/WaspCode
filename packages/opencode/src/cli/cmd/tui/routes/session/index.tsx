@@ -253,7 +253,7 @@ export function Session() {
         `${logo[3] ?? ""}`,
         ``,
         `  ${weak("Session")}${UI.Style.TEXT_NORMAL_BOLD}${title}${UI.Style.TEXT_NORMAL}`,
-        `  ${weak("Continue")}${UI.Style.TEXT_NORMAL_BOLD}opencode -s ${session()?.id}${UI.Style.TEXT_NORMAL}`,
+        `  ${weak("Continue")}${UI.Style.TEXT_NORMAL_BOLD}waspcode -s ${session()?.id}${UI.Style.TEXT_NORMAL}`,
         ``,
       ].join("\n"),
     )
@@ -1048,6 +1048,25 @@ export function Session() {
       <box flexDirection="row">
         <box flexGrow={1} paddingBottom={1} paddingTop={1} paddingLeft={2} paddingRight={2} gap={1}>
           <Show when={session()}>
+            {/* Fixed bunny header at top left */}
+            <Show when={!session()?.parentID}>
+              <box position="absolute" top={0} left={0} flexDirection="column" paddingTop={1} paddingLeft={2} zIndex={100}>
+                <box flexDirection="row" gap={2}>
+                  {/* Bunny ASCII */}
+                  <box flexDirection="column">
+                    <text fg={theme.textMuted}> (\\_/)</text>
+                    <text fg={theme.textMuted}> ( •_•)</text>
+                    <text fg={theme.textMuted}> / &gt;🍪</text>
+                  </box>
+                  {/* Status info */}
+                  <box flexDirection="column">
+                    <text fg={theme.text} attributes={TextAttributes.BOLD}>WASPCODE v0.0.1</text>
+                    <text fg={theme.textMuted}>{local.model.parsed().model} · {local.agent.current()?.name || "Builder"} Agent</text>
+                    <text fg={theme.textMuted}>{sync.data.path.directory}</text>
+                  </box>
+                </box>
+              </box>
+            </Show>
             <Show when={showHeader() && (!sidebarVisible() || !wide())}>
               <Header />
             </Show>
@@ -1164,6 +1183,13 @@ export function Session() {
                   </Switch>
                 )}
               </For>
+              {/* Thinking indicator in response area */}
+              <Show when={sync.data.session_status?.[route.sessionID]?.type !== "idle"}>
+                <box flexDirection="row" gap={1} paddingLeft={2} paddingTop={1}>
+                  <Spinner />
+                  <text fg={theme.textMuted}>thinking...</text>
+                </box>
+              </Show>
             </scrollbox>
             <box flexShrink={0}>
               <Show when={permissions().length > 0}>
@@ -1395,15 +1421,15 @@ function AssistantMessage(props: { message: AssistantMessage; parts: Part[]; las
                       : local.agent.color(props.message.agent),
                 }}
               >
-                ▣{" "}
+                ⚙{" "}
               </span>{" "}
-              <span style={{ fg: theme.text }}>{Locale.titlecase(props.message.mode)}</span>
-              <span style={{ fg: theme.textMuted }}> · {props.message.modelID}</span>
+              <span style={{ fg: theme.text }}>{Locale.titlecase(props.message.agent || props.message.mode)}</span>
+              <span style={{ fg: theme.textMuted }}>  •  {props.message.modelID}</span>
               <Show when={duration()}>
-                <span style={{ fg: theme.textMuted }}> · {Locale.duration(duration())}</span>
+                <span style={{ fg: theme.textMuted }}>  •  {Locale.duration(duration())}</span>
               </Show>
               <Show when={props.message.error?.name === "MessageAbortedError"}>
-                <span style={{ fg: theme.textMuted }}> · interrupted</span>
+                <span style={{ fg: theme.textMuted }}>  •  interrupted</span>
               </Show>
             </text>
           </box>
