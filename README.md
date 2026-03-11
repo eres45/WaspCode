@@ -272,7 +272,8 @@ MIT License — see [LICENSE](./LICENSE) for details.
 ---
 
 <p align="center">
-  <strong>Built with 💜 by developers, for developers</strong>
+  <strong>Built with 💜 by eres45</strong><br>
+  <em>An open source AI coding agent for the terminal</em>
 </p>
 
 <p align="center">
