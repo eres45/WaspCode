@@ -30,9 +30,31 @@ Think of it as having a senior developer pair programming with you 24/7 — one 
 
 ### Screenshots
 
-| Terminal Interface | AI Chat | Code Actions | Settings |
-|:---:|:---:|:---:|:---:|
-| ![Terminal](./packages/opencode/assets/Screenshot%202026-03-12%20002147.png) | ![Chat](./packages/opencode/assets/Screenshot%202026-03-12%20002204.png) | ![Actions](./packages/opencode/assets/Screenshot%202026-03-12%20002224.png) | ![Settings](./packages/opencode/assets/Screenshot%202026-03-12%20002255.png) |
+#### 1. Terminal Interface — Welcome Screen
+The first thing you see when launching WaspCode. Features our signature ASCII art logo and clear navigation options to start coding or exit.
+
+![WaspCode Welcome Screen](./packages/opencode/waspcode-assets/Screenshot%202026-03-12%20002147.png)
+
+---
+
+#### 2. AI Chat Interface
+The main interaction hub where you chat with the AI agent. Shows the conversation history, current model in use, and real-time code suggestions.
+
+![WaspCode AI Chat](./packages/opencode/waspcode-assets/Screenshot%202026-03-12%20002204.png)
+
+---
+
+#### 3. Code Actions Panel
+Where the magic happens — WaspCode analyzes your code and presents actionable suggestions. Shows file diffs, refactoring options, and direct code edits.
+
+![WaspCode Code Actions](./packages/opencode/waspcode-assets/Screenshot%202026-03-12%20002224.png)
+
+---
+
+#### 4. Settings & Configuration
+Customize your experience. Switch between AI models (15 available), configure keyboard shortcuts, set your preferred API endpoints, and personalize the theme.
+
+![WaspCode Settings](./packages/opencode/waspcode-assets/Screenshot%202026-03-12%20002255.png)
 
 ---
 
