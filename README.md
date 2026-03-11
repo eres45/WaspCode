@@ -83,32 +83,44 @@ Built by developers, for developers. Your feedback shapes the roadmap.
 
 ## 🤖 AI Models
 
-WaspCode provides **15 powerful models** through our unified **Custom Models** provider. No external API keys needed — everything works out of the box.
+WaspCode provides **14 production-grade models** through our unified **Custom Models** provider. No external API keys needed — everything works out of the box.
 
 ### Default Model
-**`custom/qwen3-coder-plus`** — Our recommended default for general coding tasks. Excellent balance of speed, accuracy, and code understanding.
+**`custom/qwen3-coder-plus`** — Our recommended default for general coding tasks. Fast, accurate, with 128K context window.
 
 ### Available Models
 
-| Model | Best For | Description |
-|-------|----------|-------------|
-| `custom/qwen3-coder-plus` | **General Coding** ⚡ Default — Fast, accurate, great for everyday tasks |
-| `custom/qwen3-coder-next` | **Advanced Coding** — Enhanced reasoning for complex algorithms |
-| `custom/qwen3-max` | **Deep Analysis** — Best for architecture decisions and complex refactors |
-| `custom/qwen3-235b` | **Heavy Tasks** — Maximum capability for challenging problems |
-| `custom/qwen3-32b` | **Balanced** — Good performance with reasonable resource usage |
-| `custom/qwen3-8b` | **Fast Responses** — Quick answers for simple queries |
-| `custom/qwen3-vl-plus` | **Vision Tasks** — Code analysis with visual understanding |
-| `custom/qwen3-vl-235b` | **Advanced Vision** — Complex visual code analysis |
-| `custom/qwen3-omni-30b` | **Multimodal** — Text, code, and image understanding |
-| `custom/qwen3-omni-flash` | **Quick Multimodal** — Fast multimodal responses |
-| `custom/qwen3-asr-flash` | **Audio Tasks** — Speech-to-code capabilities |
-| `custom/qwen3-coder-30b` | **Large Code Tasks** — Big codebase analysis |
-| `custom/qwen3-coder-flash` | **Quick Code** — Fast code completions |
-| `custom/qwen3-next-80b` | **Next-Gen** — Latest architecture improvements |
-| `custom/qwen3.5-plus` | **Latest Gen** — Newest model generation |
+#### Code-Focused Models
+| Model | Best For | Context | Features |
+|-------|----------|---------|----------|
+| `custom/qwen3-coder-plus` | **General Coding** ⚡ Default | 128K | Tool calls, fast responses |
+| `custom/qwen3-coder-flash` | **Quick Tasks** | 128K | Ultra-fast completions |
 
-> 💡 **Pro Tip:** Switch models anytime in settings or use the `@model` command in chat to try different models for different tasks.
+#### Advanced Reasoning Models
+| Model | Best For | Context | Features |
+|-------|----------|---------|----------|
+| `custom/claude-opus-4.5` | **Complex Analysis** | 200K | Reasoning, image input, tool calls |
+| `custom/claude-sonnet-4.5` | **Balanced Power** | 200K | Reasoning, image input, tool calls |
+| `custom/claude-haiku-4.5` | **Speed & Efficiency** | 200K | Fast responses, tool calls |
+| `custom/gpt-5.2` | **Latest GPT** | 128K | Reasoning, image input, tool calls |
+| `custom/kimi-k2-thinking` | **Deep Reasoning** | 128K | Chain-of-thought reasoning |
+
+#### Long Context Models
+| Model | Best For | Context | Features |
+|-------|----------|---------|----------|
+| `custom/kimi-k2-0905` | **Massive Contexts** | 256K | MoE architecture, 256K window |
+| `custom/kimi-k2.5` | **Long Documents** | 128K | Great for large codebases |
+| `custom/gemini-3-pro` | **Huge Contexts** | 2M | Up to 2 million tokens |
+| `custom/gemini-3-flash` | **Fast Long Context** | 1M | 1M context, image input |
+
+#### Specialized Models
+| Model | Best For | Context | Features |
+|-------|----------|---------|----------|
+| `custom/sonar-pro` | **Research** | 128K | Reasoning, tool calls |
+| `custom/sonar` | **Quick Research** | 128K | Fast search capabilities |
+| `custom/grok-4.1-fast` | **Real-time** | 128K | X integration, fast responses |
+
+> 💡 **Pro Tip:** Switch models anytime in settings or use the `@model` command. Different models excel at different tasks — try `claude-opus-4.5` for complex refactors, `gemini-3-pro` for huge codebases, or `kimi-k2-thinking` for deep reasoning.
 
 ---
 
