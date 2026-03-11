@@ -83,34 +83,32 @@ Built by developers, for developers. Your feedback shapes the roadmap.
 
 ## 🤖 AI Models
 
-WaspCode comes with **15 curated models** under our unified ** Custom Models** provider, optimized for different coding tasks:
+WaspCode provides **15 powerful models** through our unified **Custom Models** provider. No external API keys needed — everything works out of the box.
 
 ### Default Model
-**custom/qwen3-coder-plus** — Our recommended default for general coding tasks. Excellent balance of speed, accuracy, and code understanding.
+**`custom/qwen3-coder-plus`** — Our recommended default for general coding tasks. Excellent balance of speed, accuracy, and code understanding.
 
 ### Available Models
 
 | Model | Best For | Description |
 |-------|----------|-------------|
-| custom/qwen3-coder-plus | **General Coding** ⚡ Default — Fast, accurate, great for everyday tasks |
-| custom/qwen3-coder-next | **Advanced Coding** — Enhanced reasoning for complex algorithms |
-| custom/qwen3-max | **Deep Analysis** — Best for architecture decisions and complex refactors |
-| custom/qwen3-235b | **Heavy Tasks** — Maximum capability for challenging problems |
-| custom/qwen3-32b | **Balanced** — Good performance with reasonable resource usage |
-| custom/qwen3-8b | **Fast Responses** — Quick answers for simple queries |
-| custom/qwen3-vl-plus | **Vision Tasks** — Code analysis with visual understanding |
-| custom/qwen3-vl-235b | **Advanced Vision** — Complex visual code analysis |
-| custom/qwen3-omni-30b | **Multimodal** — Text, code, and image understanding |
-| custom/qwen3-omni-flash | **Quick Multimodal** — Fast multimodal responses |
-| custom/qwen3-asr-flash | **Audio Tasks** — Speech-to-code capabilities |
-| custom/qwen3-coder-30b | **Large Code Tasks** — Big codebase analysis |
-| custom/qwen3-coder-flash | **Quick Code** — Fast code completions |
-| custom/qwen3-next-80b | **Next-Gen** — Latest architecture improvements |
-| custom/qwen3.5-plus | **Latest Gen** — Newest model generation |
+| `custom/qwen3-coder-plus` | **General Coding** ⚡ Default — Fast, accurate, great for everyday tasks |
+| `custom/qwen3-coder-next` | **Advanced Coding** — Enhanced reasoning for complex algorithms |
+| `custom/qwen3-max` | **Deep Analysis** — Best for architecture decisions and complex refactors |
+| `custom/qwen3-235b` | **Heavy Tasks** — Maximum capability for challenging problems |
+| `custom/qwen3-32b` | **Balanced** — Good performance with reasonable resource usage |
+| `custom/qwen3-8b` | **Fast Responses** — Quick answers for simple queries |
+| `custom/qwen3-vl-plus` | **Vision Tasks** — Code analysis with visual understanding |
+| `custom/qwen3-vl-235b` | **Advanced Vision** — Complex visual code analysis |
+| `custom/qwen3-omni-30b` | **Multimodal** — Text, code, and image understanding |
+| `custom/qwen3-omni-flash` | **Quick Multimodal** — Fast multimodal responses |
+| `custom/qwen3-asr-flash` | **Audio Tasks** — Speech-to-code capabilities |
+| `custom/qwen3-coder-30b` | **Large Code Tasks** — Big codebase analysis |
+| `custom/qwen3-coder-flash` | **Quick Code** — Fast code completions |
+| `custom/qwen3-next-80b` | **Next-Gen** — Latest architecture improvements |
+| `custom/qwen3.5-plus` | **Latest Gen** — Newest model generation |
 
-**API Endpoint:** https://qwen-worker-proxy.ronitshrimankar1.workers.dev/v1
-
-> 💡 **Pro Tip:** Switch models anytime in settings or use the @model command in chat to try different models for different tasks.
+> 💡 **Pro Tip:** Switch models anytime in settings or use the `@model` command in chat to try different models for different tasks.
 
 ---
 
